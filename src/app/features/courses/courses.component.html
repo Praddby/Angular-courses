@@ -1,0 +1,22 @@
+<app-search placeholder="Search..." (clickBtnSearch)="clickSearch($event)"></app-search>
+<app-course
+  *ngFor="let course of courses$ | async"
+  [course]="course"
+  [editable$]="editable$"
+  (editCourseEvent)="editCourse($event)"
+  (removeCourseEvent)="removeCourse($event)"
+  (showCourseEvent)="showCourse($event)"
+></app-course>
+<app-info
+ *ngIf="!(courses$ | async)?.length"
+  [title]="titleInfo"
+  [text]="textInfo"
+>
+  <app-button [nameButton]="buttonInfo" (click)="addCourse()"></app-button>
+</app-info>
+<app-modal
+  *ngIf="isModal"
+  [title]="titleModal"
+  [message]="messageModal"
+  (handlerSubmitEvent)="handlerSubmit($event)"
+></app-modal>

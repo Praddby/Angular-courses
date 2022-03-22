@@ -1,0 +1,35 @@
+<div *ngIf="course" class="course">
+  <div class="info-course">
+    <h3 class="title">{{ course.title }}</h3>
+    <p class="description">{{ course.description }}</p>
+  </div>
+  <div class="details-course">
+    <p>
+      <strong>Authors: </strong>
+      <span class="autor">{{ course.authors | stringJoiner:', ' }}</span>
+    </p>
+    <p>
+      <strong>Duration: </strong>
+      <span class="duration">{{ course.duration | durationToHours }}</span>
+    </p>
+    <p>
+      <strong>Created: </strong>
+      <span class="creationDate">{{ course.creationDate | creationDate }}</span>
+    </p>
+    <div class="course-buttons">
+      <app-button [nameButton]="showCourseBtn" (click)="showCourse(course.id)"></app-button>
+      <app-button
+      *ngIf="editable$ | async"
+      [icon]="iconEdit"
+      [isIcon]="true"
+      (click)="editCourse(course.id)"
+      ></app-button>
+      <app-button
+      *ngIf="editable$ | async"
+      [icon]="iconDelete"
+      [isIcon]="true"
+      (click)="removeCourse(course.id)"
+      ></app-button>
+    </div>
+  </div>
+</div>

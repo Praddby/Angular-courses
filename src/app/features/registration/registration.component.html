@@ -1,0 +1,82 @@
+<form
+  [formGroup]="form"
+  class="form d-flex flex-column align-items-center my-3"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="mb-4">Registration</h3>
+  <div class="mb-3 w-50">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+    >
+    <p
+      *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.invalid && form.get('name')?.touched"
+      class="form-text text-danger"
+    >
+      Name is required
+    </p>
+    <p
+      *ngIf="form.get('name')?.errors?.['minlength'] && form.get('name')?.invalid && form.get('name')?.touched"
+      class="form-text text-danger"
+    >
+      "Name" should not be less than 6 symbols
+    </p>
+  </div>
+  <div class="mb-3 w-50">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      formControlName="email"
+      appEmailValidatior
+    >
+    <p
+      *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.invalid && form.get('email')?.touched"
+      class="form-text text-danger"
+    >
+      Email is required
+    </p>
+    <p
+      *ngIf="form.get('email')?.errors?.['incorrectEmail'] && form.get('email')?.invalid && form.get('email')?.touched"
+      class="form-text text-danger"
+    >
+      Email is incorrect
+    </p>
+  </div>
+  <div class="mb-3 w-50 position-relative">
+    <label for="pass" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="pass"
+      formControlName="pass"
+      appTogglePassword
+      #iconToggle="toggle"
+    >
+    <span
+      href="#"
+      class="password-control"
+      (click)="iconToggle.toggleType()"
+    ></span>
+    <p
+      *ngIf=" form.get('pass')?.invalid && form.get('pass')?.touched"
+      class="form-text text-danger"
+    >
+      Password is required
+    </p>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary px-5 mb-3"
+    [disabled]="form.invalid"
+  >
+    Registration
+  </button>
+  <p>
+    If you have an account you can <a [routerLink]="['/login']" class="text-primary">Login</a>
+  </p>
+</form>

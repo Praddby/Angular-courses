@@ -1,0 +1,8 @@
+<app-header>
+  <div *ngIf="isAuthorized$ | async" class="user_info">
+    <p class="username">{{userName$ | async}}</p>
+    <app-button [nameButton]="'Logout'" (click)="logout()"></app-button>
+    <app-button *ngIf="isAdmin$ | async" [nameButton]="'Add Course'" routerLink="/courses/add"></app-button>
+  </div>
+</app-header>
+<router-outlet></router-outlet>

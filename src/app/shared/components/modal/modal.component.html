@@ -1,0 +1,27 @@
+<div class="modal" (click)="handlerSubmit(false)">
+  <div class="modal-dialog" (click)="stopPropagation($event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ title }}</h5>
+        <app-button
+          [isIcon]="true"
+          [icon]="close"
+          (click)="handlerSubmit(false)"
+        ></app-button>
+      </div>
+      <div class="modal-body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <app-button
+          [nameButton]="okButtonText"
+          (click)="handlerSubmit(true)"
+        ></app-button>
+        <app-button
+          [nameButton]="cancelButtonText"
+          (click)="handlerSubmit(false)"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>

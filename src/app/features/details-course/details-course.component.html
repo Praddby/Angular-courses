@@ -1,0 +1,6 @@
+<h2 class="text-center my-2 fw-bold">{{ titlePage }}</h2>
+<h2>Name course: {{ (course$ | async)?.title }}</h2>
+<h2>Description course: {{ (course$ | async)?.description }}</h2>
+<h2>Authors course: {{ (course$ | async)?.authors ?? [] | stringJoiner:', '}}</h2>
+<h2>Created course: {{ (course$ | async)?.creationDate | date:'dd.MM.YY'}}</h2>
+<h2>Duration course: {{ (course$ | async)?.duration ?? 0 | durationToHours}}</h2>

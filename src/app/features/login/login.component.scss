@@ -1,0 +1,17 @@
+.password-control {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: url("../../../assets/images/view.svg") 0 0 no-repeat;
+}
+input.show + .password-control {
+  background: url("../../../assets/images/no-view.svg") 0 0 no-repeat;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

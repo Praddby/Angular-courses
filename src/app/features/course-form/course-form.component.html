@@ -1,0 +1,90 @@
+<form class="p-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="d-flex justify-content-between">
+    <div class="mb-3 w-75">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" formControlName="title" value="{{ (course$ | async)?.title }}">
+      <p
+        *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+        class="form-text text-danger"
+      >
+        Title is required
+      </p>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mb-3 align-self-end"
+      [disabled]="form.invalid"
+    >{{ submitButton }}</button>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea
+      class="form-control"
+      id="description"
+      formControlName="description"
+      value="{{ (course$ | async)?.description }}"
+    ></textarea>
+    <p
+      *ngIf="form.get('description')?.invalid && form.get('description')?.touched"
+      class="form-text text-danger"
+    >
+      Description is required
+    </p>
+  </div>
+  <div class="input-group">
+    <div class="flex-fill">
+      <div class="mb-4 w-75 d-flex flex-column align-items-center" formArrayName="authors">
+        <h3 class="text-center mb-3">Add authors</h3>
+        <label for="author" class="form-label align-self-start">Author name</label>
+        <input type="text" class="form-control" id="author" #author (input)="onInput(author)">
+        <p
+          *ngIf="isDisableAuthorBtn"
+          class="form-text text-danger align-self-start"
+        >
+          Author should contain only latin letters and numbers
+        </p>
+        <button
+          type="button"
+          class="btn btn-success btn-sm mt-2"
+          [disabled]="isDisableAuthorBtn"
+          (click)="addAuthor(author)"
+        >Create author</button>
+      </div>
+      <div class="w-75">
+        <h3 class="text-center mb-3">Duration</h3>
+        <label for="duration" class="form-label">Duration</label>
+        <input
+          type="number" z
+          class="form-control"
+          id="duration" formControlName="duration"
+          value="{{ (course$ | async)?.duration }}"
+        />
+        <p
+          *ngIf="form.get('duration')?.errors?.['required'] && form.get('duration')?.invalid && form.get('duration')?.touched"
+          class="form-text text-danger"
+        >
+          Duration is required
+        </p>
+        <p
+          *ngIf="form.get('duration')?.errors?.['min'] && form.get('duration')?.invalid && form.get('duration')?.touched"
+          class="form-text text-danger"
+        >
+          Duration must be greater than 0
+        </p>
+        <p class="mt-3">Duration {{ form.get('duration')?.valid && form.get('duration')?.value | durationToHours}}</p>
+      </div>
+    </div>
+    <div class="flex-fill">
+      <div class="mb-3 w-75">
+        <h3 class="text-center mb-3">Authors list</h3>
+        <div
+          *ngFor="let author of this.form.get('authors')?.value; let i = index"
+          class="d-flex align-items-center justify-content-between mb-2"
+        >
+          <p class="m-0">{{ author.name }}</p>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeAuthor(i)">Delete author</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

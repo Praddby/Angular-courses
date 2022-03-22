@@ -1,0 +1,58 @@
+<form #form="ngForm" class="form d-flex flex-column align-items-center my-3" (ngSubmit)="onSubmit(form)">
+  <h3 class="mb-4">Login</h3>
+  <div class="mb-3 w-50">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      ngModel
+      name="email"
+      required
+      appEmailValidatior
+      #email="ngModel"
+    >
+    <p
+      *ngIf="email.control.errors?.['required'] && email.invalid && email.touched"
+      class="form-text text-danger"
+    >
+      Email is required
+    </p>
+    <p
+     *ngIf="email.control.errors?.['incorrectEmail'] && email.invalid && email.touched"
+     class="form-text text-danger"
+    >
+      Email is incorrect
+    </p>
+  </div>
+  <div class="mb-3 w-50 position-relative">
+    <label for="pass" class="form-label">Password</label>
+    <input
+     type="password"
+     class="form-control"
+     id="pass"
+     ngModel
+     name="pass"
+     required
+     #pass="ngModel"
+     appTogglePassword
+     #iconToggle="toggle"
+    >
+    <span
+      href="#"
+      class="password-control"
+      (click)="iconToggle.toggleType()"
+    ></span>
+    <p *ngIf="pass.invalid && pass.touched" class="form-text text-danger">Password is required</p>
+  </div>
+  <button
+   type="submit"
+   class="btn btn-primary px-5 mb-3"
+   [disabled]="form.invalid"
+  >
+    Login
+  </button>
+  <p class="d-flex flex-column align-items-center">
+    If you don't have account you can <a [routerLink]="['/registration']" class="text-primary d-block">Registration</a>
+  </p>
+</form>

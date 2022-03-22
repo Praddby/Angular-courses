@@ -1,0 +1,14 @@
+textarea {
+  height: 10rem;
+  resize: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.error,
+textarea.ng-invalid.ng-touched,
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

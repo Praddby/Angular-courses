@@ -1,0 +1,16 @@
+<div class="search">
+  <input
+    class="search__input"
+    type="search"
+    placeholder="{{ placeholder }}"
+    (input)="onInput()"
+    #search
+  />
+  <button
+    class="search__button"
+    type="submit"
+    (click)="submit()"
+  >
+    Search
+  </button>
+</div>

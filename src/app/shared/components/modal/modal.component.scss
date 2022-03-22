@@ -1,0 +1,27 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &-dialog {
+    width: 400px;
+    height: 250px;
+    // padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: default;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+:host {
+  padding: 5px;
+}
+.btn {
+  padding: 5px 10px;
+  color: #76cdd8;
+  background-color: #fff;
+  font-size: inherit;
+  font-weight: 600;
+  border: 1px solid #fff;
+  outline: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #aaa;
+  transition: all 0.2s linear;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    border: 1px solid #76cdd8;
+    background-color: #76cdd8;
+  }
+
+  &:focus {
+    border: 1px solid #76cdd8;
+  }
+
+  &:active {
+    box-shadow: inset 0 0 3px #aaa;
+  }
+}
+
+.btn-icon {
+  padding: 3px 5px;
+  font-size: 1.2rem;
+}
+
